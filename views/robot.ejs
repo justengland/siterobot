@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <title>SiteRobot Debug Page</title> 
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/client.js"></script>
+        <script type="text/javascript" src="/js/robot.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Robot Debug Page</h1>
+        <div id="result" >Pass: [ <%= robot.pass %> ]</div> 
+        <h3>Request Body</h3>        
+        <div id="output"><%= robot.body %></div>     
+    </body>
+</html>

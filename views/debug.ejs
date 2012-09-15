@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>SiteRobot Debug Page</title> 
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/client.js"></script>
+        <script type="text/javascript" src="/js/robot.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Setup the textbox
+                // alert($("#debugForm").data('isPost'));
+//                if(!$("#debugForm").data('isPost')){
+//                    var testText = 'Robot.open("/test.html", function(data) { \n\t testResut(data); \n});';
+//                    $('#debugText').text(testText); 
+//                }
+                
+                // Handle the click event
+                $("#submit").click(function (e) {       
+                    try {
+                        if($('#client').is(':checked'))  {
+                            loadClientTests();  
+                            e.preventDefault();
+                        }
+                        else {
+                            // alert('server');   
+                        }  
+                    }
+                    catch(e) {
+                        debugger;
+                        alert(e);
+                    }
+                });
+            });
+            
+            function loadClientTests() {
+                var script = document.createElement( 'script' );
+                script.type = 'text/javascript';
+                script.innerHTML = $('#debugText').text();
+                $("body").append(script);                
+            }
+            
+            function loadServerTests() {
+                
+            }
+            
+            function testResut(data) {
+                var clientDataResult = 'client: ' + data; 
+                $('#result').text(clientDataResult);   
+            }
+        </script>
+    </head>
+    <body >
+        <h1>SiteRobot Debug Page</h1>
+        <form id="debugForm" method="post" data-isPost='<%= isPost %>'>
+            <textarea rows=10 cols=80 id="debugText" name="debugText"><%= debugText %></textarea>
+            <div id="controls">
+                <label for="client">Client</label>
+                <input name="execution" id="client" value="client" type="radio" checked="checked" />
+                <label for="server">Server</label>
+                <input name="execution" id="server" value="server" type="radio" />
+                <input name="submit" id="submit" value="go!" type="submit" />
+            </div>
+        <div id="result" ><%= output %></div>
+        </form>        
+    </body>
+</html>
