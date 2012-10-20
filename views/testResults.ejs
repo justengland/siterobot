@@ -1,18 +1,39 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Test Results</title> 
-        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-        <script type="text/javascript" src="/js/client.js"></script>
-        <script type="text/javascript" src="/js/robot.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                
-            });
-        </script>
-    </head>
-    <body>
-        <h1>Test Results Page</h1>
-        <h2><%= title %></h2>
-    </body>
-</html>
+<h4><%= elaspedTime %></h4>
+<table class="testResult">
+    <tr>
+        <th>result</th>
+        <th>url</th>
+        <th>statusCode</th>
+    </tr>  
+    <% for(var i=0; i<robots.length; i++) {%>
+        <tr>
+            <td class="result <%= robots[i].pass %>">&nbsp;</td>
+            <td><a class="robotUrl" href="<%= robots[i].url %>"><%= robots[i].url %></a></td>
+            <td><%= robots[i].statusCode %></td>
+        </tr>
+        <tr>
+            <td colspan=3 class="assertContainer">
+            <table class="asserts">
+                <tr>
+                    <th>result</th>
+                    <th>name</th>
+                    <th>message</th>
+                </tr>
+                <% for (var j=0; j<robots[i].asserts.length; j++) {%>     
+                <tr>
+                    <td class="result <%= robots[i].asserts[j].pass %>">&nbsp;</td>
+                    <td><%= robots[i].asserts[j].name %></td>
+                    <td><%= robots[i].asserts[j].message %></td>
+                </tr>                
+                <% } %>
+            </table>
+            </td>
+        </tr>
+    <% } %>
+</table>
+<script>
+    $(".robotUrl").click(function (event) { 
+        event.preventDefault();
+         $(".assertContainer", $(this).parents("tr").next()).toggle();
+    });
+</script>

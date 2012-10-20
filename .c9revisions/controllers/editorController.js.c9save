@@ -1,0 +1,2 @@
+{"ts":1350750131100,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1350752260510,"patch":[[{"diffs":[[1,"exports.create = function (template, req, callback) {    \n    \n};\n\nexports.edit = function (template, req, callback) {    \n    \n};\n\nexports.index = function (template, req, callback) {    \n    \n};"]],"start1":0,"start2":0,"length1":0,"length2":196}]],"length":196,"saved":false}

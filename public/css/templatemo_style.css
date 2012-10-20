@@ -58,12 +58,14 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: Georgia, "Times New Roman", Times, serif; 
 }
 
-h1 { font-size: 48px; margin: 0 0 30px; padding: 5px 0 }
-h2 { font-size: 38px; margin: 0 0 25px; padding: 5px 0; }
-h3 { font-size: 30px; margin: 0 0 20px; padding: 0; }
-h4 { font-size: 24px; margin: 0 0 15px; padding: 0; }
-h5 { font-size: 20px; margin: 0 0 10px; padding: 0;  }
+h1 { font-size: 32px; margin: 0 0 30px; padding: 5px 0 }
+h2 { font-size: 28px; margin: 0 0 25px; padding: 5px 0; }
+h3 { font-size: 24px; margin: 0 0 20px; padding: 0; }
+h4 { font-size: 16px; margin: 0 0 15px; padding: 0; }
+h5 { font-size: 14px; margin: 0 0 10px; padding: 0;  }
 h6 { font-size: 14px; margin: 0 0 5px; padding: 0; }
+
+#templatemo_header h2 { font-size: 48px }; 
 
 .cleaner { clear: both }
 .h10 { height: 10px }
@@ -614,15 +616,75 @@ h6 { font-size: 14px; margin: 0 0 5px; padding: 0; }
 
 #templatemo_footer_wrapper {
 	clear: both;
-	width: 100%;
+	position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 48px;
 	background: #000000 url(../images/templatemo_footer.png) top repeat-x;
+}
+
+#footerClear {
+     height: 750px;    
 }
 
 #templatemo_footer {
 	clear: both;
 	width: 960px;
-	padding: 30px 10px 15px;	
+	padding: 22px 10px 15px;	
 	margin: 0 auto;
 	color: #666;
 	text-align: center;
+}
+
+/* Page Styles */
+.testResult {
+    border-collapse:collapse;
+    border: 1px solid #0071bc;
+    width: 100%;
+}
+
+.asserts {
+    border-collapse:collapse;
+    width: 100%;
+}
+
+
+.testResult {
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    width:100%;
+    border-collapse:collapse;
+}
+td {
+    border:1px solid #0071bc;
+    padding:3px 7px 2px 7px;    
+}
+th {
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:#0071bc;
+    color:#fff;
+}
+.assertContainer {
+      border: 0px solid red;
+      padding:3px 7px 2px 7px;      
+}
+.result {
+    background-repeat: no-repeat;
+    background-position:center; 
+}
+.result.true {
+    background-image: url(../images/green-check-24.png); 
+}
+.result.false {  
+    background-image: url(../images/red-x-25.png);  
+}
+.robotUrl, .robotUrl:link, .robotUrl:visited {
+    color: #0071BC;
+}
+
+.assertContainer {
+    display: none   
 }

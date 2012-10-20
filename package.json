@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "dependencies": {
         "express": "3.0.0rc2",
+        "express-partials": "0.0.6",
         "ejs": "0.8.0",
         "sandbox": "0.8.3", 
         "context-loader": "0.1.1",

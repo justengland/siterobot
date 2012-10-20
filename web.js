@@ -4,8 +4,10 @@
  * I am trying to follow the MVC pattern.
  */
  
-var express = require('express'); 
-var app = module.exports = express(); 
+var express = require('express'),
+    app = module.exports = express(),
+    templateContainer = require('./libs/templateContainer.js');
+    
 // Configuration
 
 app.configure(function(){
@@ -18,6 +20,10 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
   app.use(app.router);  
+  
+  // load the express-partials middleware
+  // app.use(partials());
+  templateContainer.setDirname(__dirname);
 }); 
 
 app.configure('development', function(){
@@ -34,6 +40,10 @@ app.configure('production', function(){
 // Base Route
 app.get('/', function(req, res){
   res.send('Welcome to Site Robot');
+});
+
+app.get('/demo', function(req, res){
+    res.render("twoColumn.ejs", templateContainer.setDemo());
 });
 
 app.get('/debug', function(req, res){
@@ -85,10 +95,19 @@ app.get('/robot/i', function(req, res){
     });    
 });
 
-app.get('/test-results', function(req, res){
-    var controller = require('./controllers/testResultsController.js');
-    controller.loadTestResults(req, function(model) {  
-        res.render(model.bodyTemplate, model);
+app.get('/test-results', function(req, res) {    
+    var controller = require('./controllers/testResultsController.js');    
+    var template = templateContainer.load();
+    controller.loadTestResults(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });    
+});
+
+app.get('/editor/create', function(req, res) {    
+    var controller = require('./controllers/editorController.js');    
+    var template = templateContainer.load();
+    controller.create(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
     });    
 });
 

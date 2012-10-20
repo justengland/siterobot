@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+
+
+<title><%= page.title %></title>   
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="graphite theme, full blog post, free templates, website templates, CSS, HTML" />
+<meta name="description" content="Graphite Theme, Full Blog Post, free CSS template by templatemo.com" />
+
+<link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript">
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js">
+
+/***********************************************
+* Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+<script type="text/javascript">
+
+ddsmoothmenu.init({
+    mainmenuid: "templatemo_menu", //menu DIV id
+	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+	classname: 'ddsmoothmenu', //class added to menu's outer DIV
+	//customtheme: ["#1c5a80", "#18374a"],
+	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+})
+
+</script>
+</head>
+<body id="sub_page">
+<div id="templatemo_wrapper">
+	<div id="templatemo_top">
+    	<div id="templatemo_login">
+            <form action="#" method="get">
+              <input type="text" value="username" name="q" size="10" id="username" title="username" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+              <input type="password" value="password" name="q" size="10" id="password" title="password" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+              <input type="submit" name="Search" value="" alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
+            </form>
+		</div>
+    </div> <!-- end of top -->
+    
+  	<div id="templatemo_header">
+    	<div id="site_title"><h2><a href="/">Site Robot</a></h2></div>
+        <div id="templatemo_menu" class="ddsmoothmenu">
+            <ul>
+              	<li><a href="index.html">Home</a></li>
+          		<li><a href="about.html">About Us</a>
+                    <!--<ul>
+                        <li><a href="submenupage.html">Sub menu 1</a></li>
+                        <li><a href="submenupage.html">Sub menu 2</a></li>
+                        <li><a href="submenupage.html">Sub menu 3</a></li>
+                  	</ul> -->
+              	</li>
+          		<li><a href="portfolio.html">Portfolio</a>
+                    <!--<ul>
+                        <li><a href="submenupage.html">Sub menu 1</a></li>
+                        <li><a href="submenupage.html">Sub menu 2</a></li>
+                        <li><a href="submenupage.html">Sub menu 3</a></li>
+                        <li><a href="submenupage.html">Sub menu 4</a></li>
+                        <li><a href="submenupage.html">Sub menu 5</a></li>
+                  </ul>-->
+              </li>
+              <li><a href="blog.html" class="selected">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <br style="clear: left" />
+        </div> <!-- end of templatemo_menu -->
+    </div> <!-- end of header -->
+    
+    <div id="templatemo_main">
+    	
+        <div id="templatemo_content">
+       	    <h1><%-page.headline %></h1>
+               
+            <% for(var i=0; i<page.main.length; i++) {%>
+                <div class="bodyRow">
+                    <%- page.main[i] %>                
+                </div>
+                <div class="cleaner h40"></div>
+            <% } %>
+        </div> <!-- end of content -->
+        
+        <div id="templatemo_sidebar">  
+            <% for(var i=0; i<page.sidebar.length; i++) {%>
+                <div class="bodyRow">
+                    <%- page.sidebar[i] %>                
+                </div>
+                <div class="cleaner h40"></div>
+            <% } %>
+            <div class="cleaner h40"></div>
+		</div> <!-- End Sidebar -->
+    </div> <!-- end of main -->
+    <div id="footerClear" class="cleaner h40" >&nbsp;</div>
+</div> <!-- end of wrapper -->
+
+<div id="templatemo_footer_wrapper">
+    <div id="templatemo_footer">
+        Copyright © 2012 <a href="#">Site Robot</a> | 
+        Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+        <div class="cleaner"></div>
+    </div>
+</div> 
+  
+</body>
+</html>

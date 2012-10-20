@@ -1,35 +1,48 @@
-var testRun = (function () {
+exports.load = function () {
 
     // Constructor
     var testRunCls = { 
         startTime: Date.now(),
-        robots: [],
-        results: []
+        robotCount: 0,
+        robots: [],   
+        pass: false
     };
     
     // Use the i protocall to create robot tests
-    testRunCls.test = function (i, callback) {
-        var result = this;
-        loadRobots(i);
+    testRunCls.test = function (i, callback) {       
         
         // This is the wrapping call to log the request.
         var finish = function (finishResult) {
             var mongo = require('../libs/mongo.js');
-            result.assertDate = Date.now();
-            mongo.insert('robotAssert3', result, function(obj) { 
-                callback("inserted");
+            testRunCls.endTime = Date.now();
+            testRunCls.elaspedTime = testRunCls.endTime - testRunCls.startTime;
+            // testRunCls.finish = finishResult;
+            testRunCls.robotCount = testRunCls.robots.length;
+            mongo.insert('testResults', testRunCls, function(obj) { 
+                callback(testRunCls);
             });
-        };
+        };        
         
         var async = require("async");
         async.forEach(
-            testRunCls.robots, 
+            i.tests, 
             // iterator
-            function (robot, asyncCallback) {
-                robot(function(robotResult) {
-                    testRunCls.results.push(robotResult);
-                });
-                
+            function (currTest, asyncCallback) {          
+                var robot = require('../libs/robot.js');
+                robotOpen(robot, currTest, function () {  
+                    testRunCls.robots.push({
+                        url: robot.url,
+                        asserts: robot.asserts,
+                        statusCode: robot.statusCode,
+                        error: robot.error,
+                        result: robot.result,
+                        pass: robot.pass
+                    });
+                    
+                    // todo: add a method to get results from the rpbot
+                    robot.asserts = []; // something is not right but this clears it, the object is killing assets across robot opens?
+                    asyncCallback();
+                });                
             },
             // end iterator
             // callback
@@ -42,28 +55,19 @@ var testRun = (function () {
                     finish("it's not cool! " + err);       
                 }
             } // end callback
-        ); // end async.forEach
-        
-        // finish("it's over");  
+        ); // end async.forEach        
     };    
     
-    // Create all robot instructions
-    function loadRobots(i) {
-        var robot = require('../libs/robot.js');
-        for (var j = 0; j < i.tests.length; j++) {
-            robotOpen(robot, i.tests[j]);
-        }
-    }
-    
     // Create a single robot instruction
-    function robotOpen(robot, currentTest) {
+    function robotOpen(robot, currentTest, callback) {        
         robot.open(
             "test", 
             currentTest.url, 
-            function (result) {
+            function (result) {                
                 for (var j = 0; j < currentTest.checks.length; j++) {
-                    performCheck(currentTest.checks[j]);
+                    performCheck(robot, currentTest.checks[j]);
                 }
+                callback(robot);
             }
         );
     }
@@ -71,16 +75,11 @@ var testRun = (function () {
     // Perform a single check, using reflection    
     function performCheck(robot, check) {
         var currentValidation = robot.check(check.selector);        
-        if(typeof currentValidation[check.assert.assertType] === 'function')
+        if(typeof currentValidation[check.assert.assertType] !== 'function')
             throw "assertType does not define a function: " + check.assert.assertType;
             
         currentValidation[check.assert.assertType](check.assert.expected);
     }
 
     return testRunCls;
-})();
-
-// Module Exports
-exports.test = testRun.test;
-exports.robots = testRun.robots;
-exports.results = testRun.results;
+};

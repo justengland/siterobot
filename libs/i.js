@@ -6,8 +6,9 @@
 
 // Just creat a private varable to hold the collection of openCls, that way it works like above.
 
-var i = (function() {
+exports.load = function(testRun) {
     var iCls = {
+        testRun: testRun.load(),
         tests: []    
     };
     
@@ -52,11 +53,11 @@ var i = (function() {
     }; // end open
     
     return iCls;
-})();
+};
 
-exports.open = i.open;
-exports.src = i;
-exports.tests = i.tests;
+//exports.open = i.open;
+//exports.src = i;
+//exports.tests = i.tests;
 
 
 

@@ -1,12 +1,20 @@
 var robotFactory = (function () {
     var robotCls = {
-        factory: {}    
+        factory: {
+            check: function() { throw 'not implimented'; },
+            async: '', // asnyc js implimenation
+            insert: function() { throw 'not implimented'; }
+        }    
     };
     
     robotCls.check = function (i, callback) {
-        var testRun = require('../libs/testRun.js');
-        testRun.test(i, callback);
-        callback('help');
+        // var testRun = require('../libs/testRun.js');
+        i.testRun.test(i, callback);     
+    };
+    
+    robotCls.save = function (i, callback) {
+        // var testRun = require('../libs/testRun.js');
+        robotCls.factory.insert("iSaver", i, callback);
     };
     
     return robotCls;
@@ -22,3 +30,4 @@ module.exports = function(factory) {
 
 exports.factory = robotFactory.factory;
 exports.check = robotFactory.check;
+exports.save = robotFactory.save;
