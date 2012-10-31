@@ -1,19 +1,24 @@
 {
-    "name": "siterobot",
-    "version": "0.0.1",
-    "engines": {
-        "node": "0.8.6",
-        "npm":  "1.1.x"
-    },
-    "dependencies": {
-        "express": "3.0.0rc2",
-        "ejs": "0.8.0",
-        "sandbox": "0.8.3", 
-        "context-loader": "0.1.1",
-        "async": "0.1.22",
-        "nodeunit": "0.7.4",
-        "jsdom": "0.2.15",
-        "cheerio": "0.9.2",
-        "mongoskin": "0.4.1"
-    }  
+  "name": "siterobot",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.8.6",
+    "npm": "1.1.x"
+  },
+  "dependencies": {
+    "express": "3.0.0rc2",
+    "ejs": "0.8.0",
+    "sandbox": "0.8.3",
+    "context-loader": "0.1.1",
+    "async": "0.1.22",
+    "nodeunit": "0.7.4",
+    "jsdom": "0.2.15",
+    "cheerio": "0.9.2",
+    "mongoskin": "0.4.1",
+    "request": "2.9.203"
+  },
+  "subdomain": "siterobot",
+  "scripts": {
+    "start": "web.js"
+  }
 }
