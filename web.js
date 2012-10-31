@@ -98,7 +98,15 @@ app.get('/robot/i', function(req, res){
 app.get('/test-results', function(req, res) {    
     var controller = require('./controllers/testResultsController.js');    
     var template = templateContainer.load();
-    controller.loadTestResults(template, req, function(resultTemplate) {  
+    controller.loadTestResults(true, template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });    
+});
+
+app.get('/test-results/iron', function(req, res) {    
+    var controller = require('./controllers/testResultsController.js');    
+    var template = templateContainer.load();
+    controller.loadTestResults(false, template, req, function(resultTemplate) {  
         res.render(resultTemplate.page.bodyTemplate, resultTemplate);
     });    
 });

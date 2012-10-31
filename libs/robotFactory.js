@@ -3,13 +3,14 @@ var robotFactory = (function () {
         factory: {
             check: function() { throw 'not implimented'; },
             async: '', // asnyc js implimenation
-            insert: function() { throw 'not implimented'; }
+            insert: function() { throw 'not implimented'; },
+            runTests: function() { throw 'not implimented'; }
         }    
     };
     
     robotCls.check = function (i, callback) {
         // var testRun = require('../libs/testRun.js');
-        i.testRun.test(i, callback);     
+        robotCls.factory.runTests(i, callback);         
     };
     
     robotCls.save = function (i, callback) {

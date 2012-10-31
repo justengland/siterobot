@@ -47,10 +47,16 @@
         <form id="debugForm" method="post" data-isPost='<%= isPost %>'>
             <textarea rows=10 cols=80 id="debugText" name="debugText"><%= debugText %></textarea>
             <div id="controls">
+                
                 <label for="client">Client</label>
                 <input name="execution" id="client" value="client" type="radio" checked="checked" />
+                
                 <label for="server">Server</label>
                 <input name="execution" id="server" value="server" type="radio" />
+                
+                <label for="iron">Iron.IO</label>
+                <input name="execution" id="iron" value="iron" type="radio" />
+                
                 <input name="submit" id="submit" value="go!" type="submit" />
             </div>
         <div id="result" ><%= output %></div>

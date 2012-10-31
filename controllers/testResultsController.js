@@ -12,9 +12,8 @@ var testRun = require('../libs/testRun.js');
     );
     */
 
-exports.loadTestResults = function (template, req, callback) {    
-    
-    
+exports.loadTestResults = function (useNode, template, req, callback) {    
+        
     // Create Tests
     var i = iSource.load(testRun);    
     i.open('http://siterobot.justengland.c9.io/bad-url.html')
@@ -35,18 +34,37 @@ exports.loadTestResults = function (template, req, callback) {
         .check('title').val('SiteRobot Test Page'); 
         
     // Load the node factory, into the robotfactory and check the results.
-    var nodeFactory = require('../libs/robotNodeFactory.js');
-    var robotFactory = require('../libs/robotFactory.js')(nodeFactory);    
-    
-    robotFactory.save();
+    var resultFactory = {};
+    var pageTitle = "";
+    var pageHeadline = "";
+    var mainTemplate = ""
+    if(useNode)
+    {    
+        pageTitle = 'Test Results';
+        pageHeadline = 'Robot Results';
+        resultFactory = require('../libs/robotNodeFactory.js');
+        mainTemplate = "testResults";
+    }
+        
+    else
+    {
+        pageTitle = 'Iron Results: Test Results';
+        pageHeadline = 'Iron Results: Robot Results';
+        resultFactory = require('../libs/robotIronIoFactory.js');
+        mainTemplate = "ironResults";
+    }
+        
+        
+    var robotFactory = require('../libs/robotFactory.js')(resultFactory);    
+
     // Use not to check the results.
-//    robotFactory.check(i, function(testRun) {
-//        // var model = {};
-//        // model.title = result;
-//        // callback(model);
-//        template.page.title = 'Test Results';
-//        template.page.headline = 'Robot Results';
-//        template.addMain('testResults', testRun);
-//        callback(template);
-//    });
+    robotFactory.check(i, function(testRun) {
+        // var model = {};
+        // model.title = result;
+        // callback(model);
+        template.page.title = pageTitle;
+        template.page.headline = pageHeadline;
+        template.addMain(mainTemplate, testRun);
+        callback(template);
+    });
 };

@@ -24,7 +24,7 @@ exports.load = function(testRun) {
             openCls.check = function (selector) {
                 var checkItem = { 
                     'selector': selector,
-                    i: openCls,
+                   // i: openCls,
                     val: function (expected) {
                         checkItem.assert = { 
                             assertType: 'val',
