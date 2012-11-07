@@ -4,7 +4,7 @@ var mongoUtil = (function () {
     var mongoCls = function() { };
     
     mongoCls.mongoskin = require('mongoskin');
-    mongoCls.connection = 'robot:dog.bone@alex.mongohq.com:10070/siterobot';
+    mongoCls.connection = 'alex.mongohq.com:10070/siterobot';
         
     return mongoCls;
 })();
