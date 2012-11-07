@@ -109,8 +109,33 @@ app.get('/test-results/iron', function(req, res) {
     controller.loadTestResults(false, template, req, function(resultTemplate) {  
         res.render(resultTemplate.page.bodyTemplate, resultTemplate);
     });    
+})
+
+app.get('/check/create', function(req, res) {    
+    var controller = require('./controllers/checkController.js');    
+    var template = templateContainer.load();
+    controller.create(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    }); 
 });
 
+app.post('/check/update', function(req, res) {    
+    var controller = require('./controllers/checkController.js');    
+    var template = templateContainer.load();
+    controller.update(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    }); 
+});
+
+app.get('/check/delete', function(req, res) {    
+    
+});
+
+app.get('/check/list', function(req, res) {    
+    
+});
+
+/*
 app.get('/editor/create', function(req, res) {    
     var controller = require('./controllers/editorController.js');    
     var template = templateContainer.load();
@@ -118,6 +143,40 @@ app.get('/editor/create', function(req, res) {
         res.render(resultTemplate.page.bodyTemplate, resultTemplate);
     });    
 });
+
+app.get('/editor/update', function(req, res) {    
+    var controller = require('./controllers/editorController.js');    
+    var template = templateContainer.load();
+    controller.create(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });    
+});
+
+app.get('/test-list', function(req, res) {    
+    var controller = require('./controllers/testListController.js');    
+    var template = templateContainer.load();
+    controller.list(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });    
+});
+
+app.get('/test-list/create', function(req, res) {    
+    var controller = require('./controllers/testListController.js');    
+    var template = templateContainer.load();
+    controller.create(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });    
+});
+
+app.post('/test-list/update', function(req, res) {    
+    var controller = require('./controllers/testListController.js');    
+    var template = templateContainer.load();
+    controller.update(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });   
+});
+*/
+
 
 /******************************************************************************
  * Start Web Server

@@ -1,0 +1,9 @@
+<form action="/check/update" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="nameTextBox" value="<%= name %>" /><br>
+    <label for="check">Check</label><br>
+    <textarea name="check" rows="4" cols="50"><%= check %></textarea><br>
+    <input type="submit" value="submit" />
+    <input type="hidden" name="clientId" value="<%= clientId %>" />
+    <input type="hidden" name="id" value="<%= id %>" />
+</form>

@@ -1,0 +1,17 @@
+<h4>Test List Heading</h4>
+<table class="testResult">
+    <tr>
+        <th>result</th>
+        <th>url</th>
+        <th>statusCode</th>
+    </tr>  
+    
+    <% for (var i=0; i<testList.length; i++) { %>     
+    <tr>
+        <td><a href="/editor/update?id=<%= i %>">edit</a></td>
+        <td class="result <%= testList[i].pass %>">&nbsp;</td>
+        <td><%= testList[i].name %></td>
+    </tr>                
+    <% } %>
+    
+</table>

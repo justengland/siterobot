@@ -29,7 +29,13 @@ exports.load = function () {
     }
     
     templateCls.addMain = function(templateFileName, model) {
-        templateCls.page.main.push(render(templateFileName, model));
+        try {
+            var main = render(templateFileName, model);
+            templateCls.page.main.push(main);
+        }
+        catch(e) {
+            templateCls.page.main.push("<h3>Could not load main. </h3>" + e);
+        }        
     };
     
     templateCls.addSidebar = function(templateFileName, model) {
