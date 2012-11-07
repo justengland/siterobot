@@ -1,17 +1,16 @@
 <h4>List of checks</h4>
 <table class="testResult">
     <tr>
-        <th>result</th>
-        <th>url</th>
-        <th>statusCode</th>
-    </tr>  
-    
-    <% for (var i=0; i<testList.length; i++) { %>     
+        <th/>
+        <th>name</th>
+    </tr> 
+    <% for (var i=0; i<results.length; i++) { %>     
     <tr>
-        <td><a href="/editor/update?id=<%= i %>">edit</a></td>
-        <td class="result <%= testList[i].pass %>">&nbsp;</td>
-        <td><%= testList[i].name %></td>
+        <td><a href="/check/update?id=<%= results[i]._id %>">edit</a>&nbsp;<a href="/check/delete?id=<%= results[i]._id %>">delete</a></td>
+        <td><a href="/check/update?id=<%= results[i]._id %>"><%= results[i].name %></a></td>
     </tr>                
     <% } %>
+    <a href="/check/create">new</a>
+    
     
 </table>

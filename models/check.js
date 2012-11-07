@@ -12,17 +12,19 @@ exports.create = function(clientId, clientName) {
     };
 };
 
-exports.get = function (id) {
+exports.get = function (id, callback) {
     if(typeof id === 'undefined')
         throw 'id cannot be undefined';
     throw 'not implimented';
 };
 
-exports.getList = function (clientName) {
+exports.list = function (clientName, callback) {
     if(typeof clientName === 'undefined')
         throw 'clientName cannot be undefined';
-         
-    throw 'not implimented';
+        
+    mongo.all(clientName + clientDbName, function (results) {
+        callback(results);    
+    });
 };
 
 exports.save = function (check, callback) {

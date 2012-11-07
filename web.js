@@ -127,12 +127,24 @@ app.post('/check/update', function(req, res) {
     }); 
 });
 
+app.get('/check/update', function(req, res) {    
+    var controller = require('./controllers/checkController.js');    
+    var template = templateContainer.load();
+    controller.update(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    }); 
+});
+
 app.get('/check/delete', function(req, res) {    
     
 });
 
-app.get('/check/list', function(req, res) {    
-    
+app.get('/check', function(req, res) {    
+    var controller = require('./controllers/checkController.js');    
+    var template = templateContainer.load();
+    controller.index(template, req, function(resultTemplate) {  
+        res.render(resultTemplate.page.bodyTemplate, resultTemplate);
+    });
 });
 
 /*
