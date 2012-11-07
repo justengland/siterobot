@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Site Robot is a tool used to montor websites, that allows you to write simple 
 tests with jquery selectors and fluent/BDD style syntaxt.
 
@@ -56,10 +55,3 @@ Partial views are not native,
 keep checking, for an ejs update
 Could switch to jade templates
 footer does not let page scroll to the bottom
-    
-=======
-siterobot
-=========
-
-Site Robot is a tool used to monitor websites, that allows you to write simple  tests with jQuery selectors and fluent/BDD style syntax.
->>>>>>> d3e73f8147bc70f7f535e932f08c8ea331f66cbf
